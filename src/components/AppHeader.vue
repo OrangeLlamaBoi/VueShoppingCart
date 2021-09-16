@@ -1,0 +1,39 @@
+<template>
+  <nav class="grid grid-cols-2 text-gray-800 shadow-xl">
+    <div class="py-8 px-16">
+      <router-link to="/" class="px-2 font-bold text-xl tracking-wider"
+        >Home</router-link
+      >
+      <a href="" class="px-2 font-bold text-xl tracking-wider">Product</a>
+    </div>
+    <div class="py-8 px-16 justify-self-end">
+      <div>
+        <button
+          class="
+            bg-gray-600
+            py-2
+            px-8
+            rounded-sm
+            text-white
+            tracking-wider
+            font-bold
+          "
+        >
+          0 Cart
+        </button>
+        <div>
+          <mini-cart />
+        </div>
+      </div>
+    </div>
+  </nav>
+</template>
+
+<script>
+import MiniCart from "./MiniCart.vue";
+export default {
+  components: {
+    MiniCart,
+  },
+};
+</script>
