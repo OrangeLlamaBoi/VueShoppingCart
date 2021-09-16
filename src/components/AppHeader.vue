@@ -4,7 +4,6 @@
       <router-link to="/" class="px-2 font-bold text-xl tracking-wider"
         >Home</router-link
       >
-      <a href="" class="px-2 font-bold text-xl tracking-wider">Product</a>
     </div>
     <div class="py-8 px-16 justify-self-end">
       <div>

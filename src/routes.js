@@ -1,5 +1,4 @@
 import Home from "./pages/Home.vue";
-import Product from "./pages/Product.vue";
 
 export default [
     {
@@ -7,10 +6,4 @@ export default [
         component: Home,
         name: 'home'
     },
-    {
-        path: './product/:id',
-        component: Product,
-        name: 'product',
-        props: true
-    }
 ];

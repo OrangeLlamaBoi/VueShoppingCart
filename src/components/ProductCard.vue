@@ -1,5 +1,5 @@
 <template>
-  <div
+  <ul
     class="
       px-32
       py-16
@@ -10,21 +10,20 @@
       md:grid-cols-2
       xl:grid-cols-3
       2xl:grid-cols-4
-      shop-items
     "
   >
-    <div class="bg-white rounded-lg shop-item">
+    <li
+      class="bg-white rounded-lg"
+      v-for="cupcakes in cupcake"
+      :key="cupcakes.id"
+    >
       <img
-        class="rounded-md w-screen object-cover max-h-60 shop-item-image"
-        src="https://images.pexels.com/photos/1055270/pexels-photo-1055270.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+        class="rounded-md w-screen object-cover max-h-60"
+        :src="cupcakes.image"
       />
-      <div class="py-2 px-8 text-gray-600 shop-item-details">
-        <span class="px-10 text-xl font-bold shop-item-title">
-          <router-link :to="{ name: 'product', params: { id: 23 } }"
-            >Cream</router-link
-          ></span
-        >
-        <span class="px-10 text-xl font-bold shop-item-price">$12.99</span>
+      <div class="py-2 px-8 text-gray-600">
+        <span class="px-10 text-xl font-bold"> {{ cupcakes.title }}</span>
+        <span class="px-10 text-xl font-bold">${{ cupcakes.price }}</span>
         <button
           class="
             bg-purple-200
@@ -38,173 +37,22 @@
             rounded-md
             transition-all
             hover:bg-purple-300
-            btn btn-primary
-            shop-item-button
           "
           type="button"
         >
           ADD TO CART
         </button>
       </div>
-    </div>
-
-    <div class="bg-white rounded-lg shop-item">
-      <img
-        class="rounded-md w-screen object-cover max-h-60 shop-item-image"
-        src="https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-      />
-      <div class="py-2 px-8 text-gray-60 shop-item-details">
-        <span class="px-10 text-xl font-bold shop-item-title">Choc</span>
-        <span class="px-10 text-xl font-bold shop-item-price">$10.99</span>
-        <button
-          class="
-            bg-purple-200
-            font-bold
-            px-3
-            mt-2
-            text-xl
-            py-4
-            mb-4
-            w-full
-            rounded-md
-            transition-all
-            hover:bg-purple-300
-            btn btn-primary
-            shop-item-button
-          "
-          type="button"
-        >
-          ADD TO CART
-        </button>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-lg shop-item">
-      <img
-        class="rounded-md w-screen object-cover max-h-60 shop-item-image"
-        src="https://images.pexels.com/photos/1055271/pexels-photo-1055271.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-      />
-      <div class="py-2 px-8 text-gray-60 shop-item-details">
-        <span class="px-10 text-xl font-bold shop-item-title">Frosting</span>
-        <span class="px-10 text-xl font-bold shop-item-price">$14.99</span>
-        <button
-          class="
-            bg-purple-200
-            font-bold
-            px-3
-            mt-2
-            text-xl
-            py-4
-            mb-4
-            w-full
-            rounded-md
-            transition-all
-            hover:bg-purple-300
-            btn btn-primary
-            shop-item-button
-          "
-          type="button"
-        >
-          ADD TO CART
-        </button>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-lg shop-item">
-      <img
-        class="rounded-md w-screen object-cover max-h-60 shop-item-image"
-        src="https://images.pexels.com/photos/3081657/pexels-photo-3081657.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-      />
-      <div class="py-2 px-8 text-gray-60 shop-item-details">
-        <span class="px-10 text-xl font-bold shop-item-title">Berry</span>
-        <span class="px-10 text-xl font-bold shop-item-price">$9.99</span>
-        <button
-          class="
-            bg-purple-200
-            font-bold
-            px-3
-            mt-2
-            text-xl
-            py-4
-            mb-4
-            w-full
-            rounded-md
-            transition-all
-            hover:bg-purple-300
-            btn btn-primary
-            shop-item-button
-          "
-          type="button"
-        >
-          ADD TO CART
-        </button>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-lg shop-item">
-      <img
-        class="rounded-md w-screen object-cover max-h-60 shop-item-image"
-        src="https://images.pexels.com/photos/1998634/pexels-photo-1998634.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-      />
-      <div class="py-2 px-8 text-gray-60 shop-item-details">
-        <span class="px-10 text-xl font-bold shop-item-title">Deluxe</span>
-        <span class="px-10 text-xl font-bold shop-item-price">$19.99</span>
-        <button
-          class="
-            bg-purple-200
-            font-bold
-            px-3
-            mt-2
-            text-xl
-            py-4
-            mb-4
-            w-full
-            rounded-md
-            transition-all
-            hover:bg-purple-300
-            btn btn-primary
-            shop-item-button
-          "
-          type="button"
-        >
-          ADD TO CART
-        </button>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-lg shop-item">
-      <img
-        class="rounded-md w-screen object-cover max-h-60 shop-item-image"
-        src="https://images.pexels.com/photos/783274/pexels-photo-783274.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-      />
-      <div class="py-2 px-8 text-gray-60 shop-item-details">
-        <span class="px-10 text-xl font-bold shop-item-title">Oreo</span>
-        <span class="px-10 text-xl font-bold shop-item-price">$19.99</span>
-        <button
-          class="
-            bg-purple-200
-            font-bold
-            px-3
-            mt-2
-            text-xl
-            py-4
-            mb-4
-            w-full
-            rounded-md
-            transition-all
-            hover:bg-purple-300
-            btn btn-primary
-            shop-item-button
-          "
-          type="button"
-        >
-          ADD TO CART
-        </button>
-      </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    cupcake: function () {
+      return this.$store.state.cupcake;
+    },
+  },
+};
 </script>

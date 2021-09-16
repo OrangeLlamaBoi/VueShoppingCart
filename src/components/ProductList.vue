@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-red-200 text-center content-section">
+  <section class="bg-red-200 text-center">
     <div class="p-16 text-5xl font-bold text-gray-600">
       <h2>Products</h2>
       <product-card />
