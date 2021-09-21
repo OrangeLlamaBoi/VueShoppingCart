@@ -39,6 +39,7 @@
             hover:bg-purple-300
           "
           type="button"
+          v-on:click="addToCart(cupcakes)"
         >
           ADD TO CART
         </button>
@@ -50,8 +51,19 @@
 <script>
 export default {
   computed: {
-    cupcake: function () {
+    cupcake() {
       return this.$store.state.cupcake;
+    },
+  },
+  methods: {
+    addToCart(cupcakes) {
+      this.$store.state.cart.push({
+        title: cupcakes.title,
+        price: cupcakes.price,
+        image: cupcakes.image,
+        id: cupcakes.id,
+        quantity: cupcakes.quantity,
+      });
     },
   },
 };

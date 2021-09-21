@@ -16,6 +16,7 @@
             text-white
             tracking-wider
             font-bold
+            relative
           "
         >
           0 Cart
