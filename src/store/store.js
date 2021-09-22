@@ -50,19 +50,4 @@ export const store = new Vuex.Store({
         },
         ]
     },
-    mutations: {
-        appendCart(state, item) {
-            state.cart.push(item);
-        }
-    },
-    actions: {
-        addToCart(state, payload) {
-            state.commit('appendCart', payload);
-        }
-    },
-    getters: {
-        cart: state => {
-            return state.cart;
-        }
-    }
 });

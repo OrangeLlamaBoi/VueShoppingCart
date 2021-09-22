@@ -13,7 +13,7 @@
     "
   >
     <li
-      class="bg-white rounded-lg"
+      class="rounded-lg shadow-lg"
       v-for="cupcakes in cupcake"
       :key="cupcakes.id"
     >
@@ -22,26 +22,31 @@
         :src="cupcakes.image"
       />
       <div class="py-2 px-8 text-gray-600">
-        <span class="px-10 text-xl font-bold"> {{ cupcakes.title }}</span>
-        <span class="px-10 text-xl font-bold">${{ cupcakes.price }}</span>
+        <div class="grid grid-cols-2 mt-10">
+          <span class="text-xl font-bold text-left"> {{ cupcakes.title }}</span>
+          <span class="text-base font-medium text-right"
+            >${{ cupcakes.price }}</span
+          >
+        </div>
         <button
           class="
             bg-purple-200
-            font-bold
-            px-3
-            mt-2
-            text-xl
-            py-4
+            font-medium
+            px-2
+            py-2
+            mt-10
+            text-lg
             mb-4
             w-full
-            rounded-md
+            rounded
             transition-all
             hover:bg-purple-300
           "
           type="button"
           v-on:click="addToCart(cupcakes)"
+          :disabled="checkCart(cupcakes.id)"
         >
-          ADD TO CART
+          Add to Cart
         </button>
       </div>
     </li>
@@ -56,14 +61,11 @@ export default {
     },
   },
   methods: {
+    checkCart(id) {
+      return this.$store.state.cart.find((item) => item.id === id);
+    },
     addToCart(cupcakes) {
-      this.$store.state.cart.push({
-        title: cupcakes.title,
-        price: cupcakes.price,
-        image: cupcakes.image,
-        id: cupcakes.id,
-        quantity: cupcakes.quantity,
-      });
+      this.$store.state.cart.push(cupcakes);
     },
   },
 };

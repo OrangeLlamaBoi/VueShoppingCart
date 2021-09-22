@@ -1,5 +1,5 @@
 <template>
-  <nav class="grid grid-cols-2 text-gray-800 shadow-xl">
+  <nav class="grid grid-cols-2 text-gray-800 shadow-lg">
     <div class="py-8 px-16">
       <router-link to="/" class="px-2 font-bold text-xl tracking-wider"
         >Home</router-link
@@ -9,17 +9,18 @@
       <div>
         <button
           class="
+            block
             bg-gray-600
             py-2
             px-8
-            rounded-sm
+            rounded
             text-white
             tracking-wider
             font-bold
             relative
           "
         >
-          0 Cart
+          ({{ cartTotal }}) Cart
         </button>
         <div>
           <mini-cart />
@@ -34,6 +35,11 @@ import MiniCart from "./MiniCart.vue";
 export default {
   components: {
     MiniCart,
+  },
+  computed: {
+    cartTotal: function () {
+      return this.$store.state.cart.length;
+    },
   },
 };
 </script>

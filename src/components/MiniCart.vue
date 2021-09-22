@@ -1,30 +1,90 @@
 <template>
-  <div class="bg-white border-2 border-gray-500 rounded-md absolute right-16">
+  <div class="bg-white shadow-lg rounded-md absolute right-16">
     <div
-      class="grid grid-cols-2 gap-20 m-5"
+      class="grid grid-cols-2 m-5 mt-9"
       v-for="carts in cart"
       :key="carts.id"
     >
       <img class="w-24" :src="carts.image" alt="" />
-      <div class="grid grid-rows-3">
-        <strong class="tracking-wider font-bold">{{ carts.title }}</strong>
-        <p class="tracking-wider font-bold">
-          {{ carts.quantity }} x ${{ carts.price }}
-        </p>
-        <button
-          class="bg-gray-500 rounded p-2 tracking-wider font-bold text-white"
-          v-on:click="removeItem(carts)"
+      <div class="grid grid-rows-2">
+        <strong class="tracking-wider text-center text-lg font-bold">{{
+          carts.title
+        }}</strong>
+
+        <div class="grid grid-cols-4 text-center">
+          <button
+            class="
+              text-lg
+              font-bold
+              text-purple-500
+              bg-purple-200
+              rounded
+              transition-all
+              hover:bg-purple-300
+            "
+            type="button"
+            v-on:click="increase(carts)"
+          >
+            +
+          </button>
+          <p class="text-gray-500 leading-9 font-normal">
+            {{ carts.quantity }}
+          </p>
+          <button
+            class="
+              text-lg
+              font-bold
+              text-purple-500
+              bg-purple-200
+              rounded
+              transition-all
+              hover:bg-purple-300
+            "
+            type="button"
+            v-on:click="deccrease(carts)"
+          >
+            -
+          </button>
+          <button
+            class="
+              bg-gray-200
+              rounded
+              p-2
+              tracking-wider
+              font-bold
+              ml-4
+              text-gray-500
+            "
+            v-on:click="removeItem(carts)"
+          >
+            🗑️
+          </button>
+        </div>
+
+        <p
+          class="
+            text-base
+            tracking-wider
+            mt-2
+            text-center text-gray-500
+            font-medium
+          "
         >
-          remove
-        </button>
-        <button type="button" v-on:click="increase(carts)">Increase</button>
-        <button type="button" v-on:click="deccrease(carts)">Deccrease</button>
+          ${{ carts.price }}
+        </p>
       </div>
     </div>
 
     <div class="flex mx-5 my-8 justify-between">
       <span
-        class="tracking-wider text-xl p-4 font-bold justify-center align-middle"
+        class="
+          tracking-wider
+          text-lg
+          p-4
+          font-medium
+          justify-center
+          align-middle
+        "
         >Total: ${{ total }}</span
       >
       <button
@@ -36,8 +96,9 @@
           p-4
           rounded
           tracking-wider
-          text-white text-xl
-          font-bold
+          text-white text-medium
+          font-medium
+          leading-none
         "
       >
         Clear Cart
