@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         cart: [],
-        cupcake: [{
+        cupcakes: [{
             title: 'Cream',
             price: 12.99,
             image: 'https://images.pexels.com/photos/1055270/pexels-photo-1055270.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
@@ -50,4 +50,32 @@ export const store = new Vuex.Store({
         },
         ]
     },
+    getters: {
+        cupcakes(state) {
+            return state.cupcakes;
+        },
+        cartTotal(state) {
+            return state.cart.length;
+        },
+        cart(state) {
+            return state.cart;
+        },
+        total(state) {
+            let total = 0;
+            for (let carts of state.cart) {
+                total += carts.price * carts.quantity;
+            }
+            return total.toFixed(2);
+        }
+    },
+    mutations: {
+        addToCart(state, cupcake) {
+            state.cart.push(cupcake);
+        }
+    },
+    actions: {
+        addToCart({ commit }, cupcake) {
+            commit("addToCart", cupcake)
+        }
+    }
 });

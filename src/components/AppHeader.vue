@@ -19,10 +19,11 @@
             font-bold
             relative
           "
+          @click.prevent="showMiniCart = !showMiniCart"
         >
           ({{ cartTotal }}) Cart
         </button>
-        <div>
+        <div v-if="showMiniCart">
           <mini-cart />
         </div>
       </div>
@@ -32,14 +33,19 @@
 
 <script>
 import MiniCart from "./MiniCart.vue";
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     MiniCart,
   },
-  computed: {
-    cartTotal: function () {
-      return this.$store.state.cart.length;
-    },
+  data() {
+    return {
+      showMiniCart: false,
+    };
   },
+  computed: mapGetters({
+    cartTotal: "cartTotal",
+  }),
 };
 </script>

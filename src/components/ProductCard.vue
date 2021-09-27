@@ -14,23 +14,28 @@
   >
     <li
       class="rounded-lg shadow-lg"
-      v-for="cupcakes in cupcake"
-      :key="cupcakes.id"
+      v-for="cupcake in cupcakes"
+      :key="cupcake.id"
     >
       <img
         class="rounded-md w-screen object-cover max-h-60"
-        :src="cupcakes.image"
+        :src="cupcake.image"
       />
       <div class="py-2 px-8 text-gray-600">
         <div class="grid grid-cols-2 mt-10">
-          <span class="text-xl font-bold text-left"> {{ cupcakes.title }}</span>
+          <span class="text-xl font-bold text-left"> {{ cupcake.title }}</span>
           <span class="text-base font-medium text-right"
-            >${{ cupcakes.price }}</span
+            >${{ cupcake.price }}</span
           >
         </div>
         <button
+          :disabled="checkCart(cupcake.id)"
+          :class="
+            checkCart(cupcake.id)
+              ? 'bg-red-300 cursor-not-allowed'
+              : 'bg-purple-200 hover:bg-purple-300'
+          "
           class="
-            bg-purple-200
             font-medium
             px-2
             py-2
@@ -40,13 +45,11 @@
             w-full
             rounded
             transition-all
-            hover:bg-purple-300
           "
           type="button"
-          v-on:click="addToCart(cupcakes)"
-          :disabled="checkCart(cupcakes.id)"
+          v-on:click="addToCart(cupcake)"
         >
-          Add to Cart
+          {{ checkCart(cupcake.id) ? "In Cart" : "Add to Cart" }}
         </button>
       </div>
     </li>
@@ -54,18 +57,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  computed: {
-    cupcake() {
-      return this.$store.state.cupcake;
-    },
-  },
+  computed: mapGetters({
+    cupcakes: "cupcakes",
+  }),
   methods: {
     checkCart(id) {
       return this.$store.state.cart.find((item) => item.id === id);
     },
     addToCart(cupcakes) {
-      this.$store.state.cart.push(cupcakes);
+      this.$store.dispatch("addToCart", cupcakes);
     },
   },
 };

@@ -5,7 +5,7 @@
       v-for="carts in cart"
       :key="carts.id"
     >
-      <img class="w-24" :src="carts.image" alt="" />
+      <img class="w-24 rounded" :src="carts.image" alt="" />
       <div class="grid grid-rows-2">
         <strong class="tracking-wider text-center text-lg font-bold">{{
           carts.title
@@ -27,7 +27,7 @@
           >
             +
           </button>
-          <p class="text-gray-500 leading-9 font-normal">
+          <p class="text-gray-500 mt-0.5 leading-9 font-normal">
             {{ carts.quantity }}
           </p>
           <button
@@ -54,6 +54,8 @@
               font-bold
               ml-4
               text-gray-500
+              transition-all
+              hover:bg-gray-300
             "
             v-on:click="removeItem(carts)"
           >
@@ -108,19 +110,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  computed: {
-    cart() {
-      return this.$store.state.cart;
-    },
-    total: function () {
-      let total = 0;
-      for (let carts of this.$store.state.cart) {
-        total += carts.price * carts.quantity;
-      }
-      return total.toFixed(2);
-    },
-  },
+  computed: mapGetters({
+    cart: "cart",
+    total: "total",
+  }),
   methods: {
     removeItem: function (carts) {
       this.$store.state.cart.splice(carts, 1);
