@@ -118,23 +118,17 @@ export default {
     total: "total",
   }),
   methods: {
-    removeItem: function (carts) {
-      this.$store.state.cart.splice(carts, 1);
+    removeItem(carts) {
+      this.$store.dispatch("removeItem", carts);
     },
     increase: function (carts) {
       carts.quantity += 1;
     },
-    deccrease: function (carts) {
-      if (carts.quantity > 1) {
-        carts.quantity -= 1;
-      } else {
-        this.$store.state.cart.splice(carts, 1);
-      }
+    deccrease(carts) {
+      this.$store.dispatch("deccrease", carts);
     },
-    clearCart: function () {
-      let length = this.$store.state.cart.length;
-      this.$store.state.cart.splice(0, length);
-      console.log(length);
+    clearCart() {
+      this.$store.dispatch("clearCart");
     },
   },
 };

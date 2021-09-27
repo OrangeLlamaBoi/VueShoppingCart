@@ -57,15 +57,15 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
-  computed: mapGetters({
-    cupcakes: "cupcakes",
-  }),
+  computed: {
+    cupcakes() {
+      return this.$store.getters.cupcakes;
+    },
+  },
   methods: {
     checkCart(id) {
-      return this.$store.state.cart.find((item) => item.id === id);
+      return this.$store.getters.checkCart.find((item) => item.id === id);
     },
     addToCart(cupcakes) {
       this.$store.dispatch("addToCart", cupcakes);

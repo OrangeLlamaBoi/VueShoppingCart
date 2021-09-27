@@ -66,16 +66,41 @@ export const store = new Vuex.Store({
                 total += carts.price * carts.quantity;
             }
             return total.toFixed(2);
+        },
+        checkCart(state) {
+            return state.cart;
         }
     },
     mutations: {
         addToCart(state, cupcake) {
             state.cart.push(cupcake);
+        },
+        clearCart(state) {
+            state.cart.splice(0, state.cart.length);
+        },
+        deccrease(state, carts) {
+            if (carts.quantity > 1) {
+                carts.quantity -= 1;
+            } else {
+                state.cart.splice(carts, 1);
+            }
+        },
+        removeItem(state, carts) {
+            state.cart.splice(carts, 1);
         }
     },
     actions: {
         addToCart({ commit }, cupcake) {
             commit("addToCart", cupcake)
+        },
+        clearCart({ commit }) {
+            commit("clearCart")
+        },
+        deccrease({ commit }, carts) {
+            commit("deccrease", carts)
+        },
+        removeItem({ commit }, carts) {
+            commit("removeItem", carts)
         }
     }
 });
